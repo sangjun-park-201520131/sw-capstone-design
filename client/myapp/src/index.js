@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+
+const LoggedInUser = { name: "자까", id: uuidv4(), novelList: [] };
+localStorage.setItem("UserData", JSON.stringify(LoggedInUser));
 
 ReactDOM.render(
   <BrowserRouter>
@@ -11,8 +13,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
