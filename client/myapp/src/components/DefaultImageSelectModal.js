@@ -3,17 +3,33 @@ import Card from "../UI/Card";
 
 const DefaultImageSelectModal = ({ title }) => {
   const [imageSelected, setImageSelected] = useState(false);
-  const [currentSelectedIdx, setCurrentSelectedIdx] = useState("");
+  const [currentSelectedImageId, setCurrentSelectedImageId] = useState(null);
 
-  const selectThisImageHandler = () => {};
+  const imgList = [
+    {
+      src: "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_960_720.jpg",
+      id: 1,
+    },
+  ];
 
-  const selectClickedImage = (event) => {
+  const newNovelData = {
+    title: null,
+    genre: null,
+  };
+
+  const imageSelectedHandler = (id) => {
+    setCurrentSelectedImageId(id);
     setImageSelected(true);
   };
 
-  const srcLists = [
-    "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_960_720.jpg",
-  ];
+  const addImageDataInNovelData = (event) => {
+    event.preventDefault();
+    const selectedImageID = imgList.find(
+      (img) => img.id === currentSelectedImageId
+    );
+  };
+
+  console.log(currentSelectedImageId);
 
   return (
     <Card>
@@ -23,13 +39,16 @@ const DefaultImageSelectModal = ({ title }) => {
       </header>
       <main>
         <ul className="images-grid">
-          {srcLists.map((srcURL, idx) => {
+          {imgList.map((image, idx) => {
             return (
-              <li key={idx}>
+              <li
+                key={idx}
+                className={currentSelectedImageId === image.id ? "active" : ""}
+              >
                 <img
-                  src={srcURL}
+                  src={image.src}
                   alt={`default-img ${idx}`}
-                  onClick={selectClickedImage}
+                  onClick={() => imageSelectedHandler(image.id)}
                 />
               </li>
             );
@@ -38,8 +57,8 @@ const DefaultImageSelectModal = ({ title }) => {
       </main>
       <footer>
         <button
-          onClick={selectThisImageHandler}
-          className={!imageSelected ? "disabled" : ""}
+          disabled={!imageSelected}
+          onClick={addImageDataInNovelData.bind(this)}
         >
           선택하기
         </button>

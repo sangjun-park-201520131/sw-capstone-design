@@ -5,7 +5,7 @@ import CreateNewNovel from "./pages/CreateNewNovel";
 import SearchResult from "./pages/SearchResult";
 import ReaderChapter from "./pages/ReaderChapter";
 import WriterChapter from "./pages/WriterChapter";
-import GlobalStyle from "./GlobalStyle";
+
 
 const App = () => {
   return (
