@@ -1,25 +1,25 @@
 import DefaultImageSelectModal from "../components/DefaultImageSelectModal";
 import React, { useState, useReducer, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import GlobalStyle from "../GlobalStyle";
-
+import { postData } from "../components/http-request";
+import userAccount from "../components/userAccount";
+import { v4 as uuidv4 } from "uuid";
 const reducer = (state, action) => {
   if (action.type === "TITLE") {
-    return { ...state, title: action.value.trim() };
+    return { ...state, novelTitle: action.value.trim() };
   }
   if (action.type === "GENRE") {
-    return { ...state, genre: action.value };
+    return { ...state, novelGenre: action.value };
   }
   if (action.type === "IMAGE") {
     return { ...state, selectedImage: action.value };
   }
-  if (action.type === "DESCRIPTION") {
-    return { ...state, description: action.value.trim() };
-  }
   return {
-    title: "",
-    genre: "fantasy",
+    novelTitle: "",
+    novelGenre: "fantasy",
     selectedImage: null,
-    description: "",
+    novelDescription: "",
   };
 };
 
@@ -27,26 +27,30 @@ const CreateNewNovel = () => {
   const descriptionValue = useRef(null);
   const [imageModal, setImageModal] = useState(false);
   const [currentData, changeCurrentData] = useReducer(reducer, {
-    title: "",
-    genre: "fantasy",
+    novelTitle: "",
+    novelGenre: "fantasy",
     selectedImage: null,
-    description: "",
+    novelDescription: "",
+    userId: userAccount.userId,
+    novelId: uuidv4(),
   });
+  const navigate = useNavigate();
 
   const executeModalHandler = (event) => {
     event.preventDefault();
     setImageModal(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    changeCurrentData({
-      type: "DESCRIPTION",
-      value: descriptionValue.current.value,
-    });
+    const submitData = {
+      ...currentData,
+      novelDescription: descriptionValue.current.value,
+    };
+    postData("upload/novel.json", submitData);
+    userAccount.writingNovelList.push(submitData);
+    navigate("/mypage");
   };
-
-  console.log(currentData);
 
   return (
     <>
@@ -72,14 +76,14 @@ const CreateNewNovel = () => {
             changeCurrentData({ type: "GENRE", value: e.target.value })
           }
         >
-          <option value="fantasy">판타지</option>
-          <option value="modern-fantasy">현대 판타지</option>
-          <option value="romance-fantasy">로맨스 판타지</option>
-          <option value="history-fantasy">역사 판타지</option>
-          <option value="science-fiction">SF</option>
-          <option value="muheop">무협</option>
-          <option value="light-novel">라이트노벨</option>
-          <option value="mistery">미스터리</option>
+          <option value="판타지">판타지</option>
+          <option value="현대 판타지">현대 판타지</option>
+          <option value="로맨스 판타지">로맨스 판타지</option>
+          <option value="역사 판타지">역사 판타지</option>
+          <option value="SF">SF</option>
+          <option value="무협">무협</option>
+          <option value="라이트 노벨">라이트 노벨</option>
+          <option value="미스터리">미스터리</option>
         </select>
         <br />
         <br />

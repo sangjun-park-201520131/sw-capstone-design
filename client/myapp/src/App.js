@@ -6,13 +6,15 @@ import SearchResult from "./pages/SearchResult";
 import ReaderChapter from "./pages/ReaderChapter";
 import WriterChapter from "./pages/WriterChapter";
 
-
 const App = () => {
   return (
     <Routes>
       <Route index element={<Main />} />
       <Route path="/mypage" element={<MyPage />} />
-      <Route path="/create/novel" element={<CreateNewNovel />} />
+      <Route
+        path="/create/novel"
+        element={<CreateNewNovel />}
+      />
       <Route path="/search" element={<SearchResult />} />
       <Route path="/novel-list/novel/:title" element={<ReaderChapter />} />
       <Route
