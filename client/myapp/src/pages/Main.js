@@ -1,12 +1,13 @@
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "../components/NavigationBar";
 import GlobalStyle from "../GlobalStyle";
+import { Link } from "react-router-dom";
 
 const Main = () => {
   return (
     <>
       <GlobalStyle />
       <NavigationBar />
-      <h1>메인페이지</h1>
+      <h1>메인페이지!</h1>
     </>
   );
 };
