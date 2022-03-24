@@ -5,7 +5,6 @@ import GlobalStyle from "../GlobalStyle";
 import { postData } from "../components/http-request";
 import userAccount from "../components/userAccount";
 import { v4 as uuidv4 } from "uuid";
-
 const reducer = (state, action) => {
   if (action.type === "TITLE") {
     return { ...state, novelTitle: action.value.trim() };
