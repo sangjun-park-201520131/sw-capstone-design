@@ -1,6 +1,12 @@
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Main from "./pages/Main";
+import MyPage from "./pages/MyPage";
+import CreateNewNovel from "./pages/CreateNewNovel";
+import SearchResult from "./pages/SearchResult";
+import ReaderChapter from "./pages/ReaderChapter";
+import WriterChapter from "./pages/WriterChapter";
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route index element={<Main />} />
@@ -14,6 +20,6 @@ function App() {
       />
     </Routes>
   );
-}
+};
 
 export default App;

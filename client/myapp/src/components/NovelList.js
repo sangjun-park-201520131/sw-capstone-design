@@ -7,7 +7,7 @@ const NovelList = ({ title, value }) => {
       <h2>{title}</h2>
       <ul>
         {value.map((novelData, idx) => (
-          <li key={idx}>
+          <li>
             <NovelItem data={novelData} ilstId={idx} />
           </li>
         ))}
