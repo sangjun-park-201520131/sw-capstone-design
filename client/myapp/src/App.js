@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import logo from './logo.svg';
 import './App.css';
 
@@ -25,6 +26,8 @@ function App() {
 
 export default App;
 =======
+=======
+>>>>>>> parent of 04396ab (Merge pull request #3 from sangjun-park-201520131/sangjun-park-201520131)
 import logo from './logo.svg';
 import './App.css';
 

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -17,6 +18,8 @@ ReactDOM.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 =======
+=======
+>>>>>>> parent of 04396ab (Merge pull request #3 from sangjun-park-201520131/sangjun-park-201520131)
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -34,4 +37,7 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+<<<<<<< HEAD
+>>>>>>> parent of 04396ab (Merge pull request #3 from sangjun-park-201520131/sangjun-park-201520131)
+=======
 >>>>>>> parent of 04396ab (Merge pull request #3 from sangjun-park-201520131/sangjun-park-201520131)
