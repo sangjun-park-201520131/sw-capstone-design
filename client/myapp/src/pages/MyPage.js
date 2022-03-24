@@ -25,7 +25,11 @@ const MyPage = () => {
       <CurrentPoint />
       <br />
       <br />
-      <NovelList title="내가 쓴 소설 목록" value={currentWritingNovelList} />
+      <NovelList
+        title="내가 쓴 소설 목록"
+        value={currentWritingNovelList}
+        key={1}
+      />
       {/* <NovelList title="구매한 소설 목록" value={currentPurchasedNovelList} /> */}
 
       <Link to="/novel-list/novel/harrypotter">해리포터</Link>

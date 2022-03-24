@@ -6,6 +6,7 @@ const LoginButton = () => {
     "112172327061-95mqb878sgpt8t955rkkdug7mvgco8od.apps.googleusercontent.com";
 
   const onSuccess = (res) => {
+    console.log(res);
     console.log("로그인 성공!", res.profileObj);
   };
 

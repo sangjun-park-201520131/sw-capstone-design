@@ -33,7 +33,7 @@ const CreateNewNovel = () => {
     selectedImage: null,
     novelDescription: "",
     userId: userAccount.userId,
-    novelId: uuidv4(),
+    // novelId: uuidv4(),
   });
   const navigate = useNavigate();
 
