@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "./NavigationBar";
 import GlobalStyle from "../GlobalStyle";
 import CurrentPoint from "../components/CurrentPoint";
 import NovelList from "../components/NovelList";
