@@ -1,40 +1,47 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('chapter', {
+  return sequelize.define('music', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    Novel_id: {
+    Chapter_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
       references: {
-        model: 'novel',
+        model: 'chapter',
         key: 'id'
       }
     },
-    title: {
+    Chapter_Novel_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'chapter',
+        key: 'Novel_id'
+      }
+    },
+    userId: {
       type: DataTypes.STRING(45),
       allowNull: false
-    },
-    fileName: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    comment: {
-      type: DataTypes.STRING(100),
-      allowNull: true
     },
     price: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    fileName: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
+    likes: {
       type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'chapter',
+    tableName: 'music',
     timestamps: false,
     indexes: [
       {
@@ -43,14 +50,14 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-          { name: "Novel_id" },
         ]
       },
       {
-        name: "fk_Chapter_Novel1_idx",
+        name: "fk_Music_Chapter1",
         using: "BTREE",
         fields: [
-          { name: "Novel_id" },
+          { name: "Chapter_id" },
+          { name: "Chapter_Novel_id" },
         ]
       },
     ]

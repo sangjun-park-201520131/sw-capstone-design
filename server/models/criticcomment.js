@@ -1,48 +1,47 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('novel', {
+  return sequelize.define('criticcomment', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    User_id: {
-      type: DataTypes.STRING(45),
+    Novel_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
       references: {
-        model: 'user',
+        model: 'novel',
         key: 'id'
       }
     },
-    title: {
+    Novel_User_id: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      references: {
+        model: 'novel',
+        key: 'User_id'
+      }
+    },
+    nickname: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    description: {
+    content: {
       type: DataTypes.TEXT,
-      allowNull: true
-    },
-    genre: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    coverFileName: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    defaultPrice: {
-      type: DataTypes.INTEGER,
       allowNull: false
     },
     rating: {
       type: DataTypes.FLOAT,
       allowNull: true
+    },
+    likes: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'novel',
+    tableName: 'criticcomment',
     timestamps: false,
     indexes: [
       {
@@ -51,22 +50,14 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-          { name: "User_id" },
         ]
       },
       {
-        name: "novelID_UNIQUE",
-        unique: true,
+        name: "fk_CriticComment_Novel1_idx",
         using: "BTREE",
         fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "fk_Novel_User1_idx",
-        using: "BTREE",
-        fields: [
-          { name: "User_id" },
+          { name: "Novel_id" },
+          { name: "Novel_User_id" },
         ]
       },
     ]

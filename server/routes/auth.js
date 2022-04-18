@@ -13,11 +13,11 @@ const router = express.Router();
 
 //회원가입
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { email, nickname, password } = req.body;
+    const { userId, nickname, password } = req.body;
     try {
         const user = await User.findOne({
             where: {
-                userID : email
+                id : userId
             }
         });
         if(user) {
@@ -26,11 +26,12 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
         const hashed = await bcrypt.hash(password, 12); //salt roud 12번
         
         await User.create({
-            userID : email,
+            id : userId,
             password : hashed,
             nickname : nickname,
             coin : 0,
-        }).then(console.log(`${email} created.`));
+            admin : 0
+        }).then(console.log(`${userId} created.`));
         return res.json({ "result" : "success" });
     } catch(err) {
         console.log(err);
@@ -56,7 +57,7 @@ router.post('/login', isNotLoggedIn, async (req, res, next) => {
                 }
 
                 const token = jwt.sign({
-                    email: user.userID,
+                    userId: user.userId,
                     nickname: user.nickname,
                     // auth: user.auth
                 }, 
@@ -96,34 +97,34 @@ router.post('/google', async(req, res, next) => {
         });
 
         const { name, email } = ticket.getPayload();
-        
         const user = await User.findOne({
             where: {
-                userID : email
+                id : email
             }
         });
-       
+
         if(user) {
             console.log(`${email} found.`);
             
         }
         else {
             await User.create({
-                userID : email,
+                id : email,
                 password : "asdf", // 구글 로그인 시 비밀번호는 필요가 없게 됨
                 nickname : name,
                 coin : 0,
+                admin : 0
             }).then(user => console.log(`${email} created.`));
         }
 
         const token = jwt.sign({
-            email: email,
+            userId: email,
             nickname: name,
             // auth: user.auth
         }, 
         process.env.JWT_SECRET_KEY, 
         {
-            expiresIn: '120s'
+            expiresIn: '1h'
         });
         
         res.json({

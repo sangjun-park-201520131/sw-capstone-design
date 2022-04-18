@@ -1,39 +1,34 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('novel', {
+  return sequelize.define('usercomment', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    User_id: {
-      type: DataTypes.STRING(45),
+    Chapter_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
       references: {
-        model: 'user',
+        model: 'chapter',
         key: 'id'
       }
     },
-    title: {
+    Chapter_Novel_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'chapter',
+        key: 'Novel_id'
+      }
+    },
+    userId: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    description: {
+    content: {
       type: DataTypes.TEXT,
-      allowNull: true
-    },
-    genre: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    coverFileName: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    defaultPrice: {
-      type: DataTypes.INTEGER,
       allowNull: false
     },
     rating: {
@@ -42,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'novel',
+    tableName: 'usercomment',
     timestamps: false,
     indexes: [
       {
@@ -51,22 +46,14 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-          { name: "User_id" },
         ]
       },
       {
-        name: "novelID_UNIQUE",
-        unique: true,
+        name: "fk_UserComment_Chapter1",
         using: "BTREE",
         fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "fk_Novel_User1_idx",
-        using: "BTREE",
-        fields: [
-          { name: "User_id" },
+          { name: "Chapter_id" },
+          { name: "Chapter_Novel_id" },
         ]
       },
     ]
