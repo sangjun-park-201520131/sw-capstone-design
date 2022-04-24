@@ -1,15 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-const novelList = {
-  harrypotter: {
-    name: "해리 포터",
-    description: "마법 소년",
-  },
-  gameofthrones: {
-    name: "왕좌의 게임",
-    description: "얼음과 불의 노래",
-  },
+const WriterChapter = () => {
+  const location = useLocation();
+  const { state } = location;
+  console.log(state);
+  return <button>챕터 등록하기</button>;
 };
 
-const WriterChapter = () => {};
 export default WriterChapter;
