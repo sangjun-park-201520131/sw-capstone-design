@@ -3,7 +3,7 @@ import LoginButton from "./LoginButton";
 import { useEffect } from "react";
 import { gapi } from "gapi-script";
 import LogoutButton from "./LogoutButton";
-import styles from "./NavigationBar.module.css";
+import "./NavigationBar.css";
 import {
   Navbar,
   Nav,
