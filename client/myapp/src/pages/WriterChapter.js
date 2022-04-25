@@ -1,15 +1,30 @@
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const novelList = {
-  harrypotter: {
-    name: "해리 포터",
-    description: "마법 소년",
-  },
-  gameofthrones: {
-    name: "왕좌의 게임",
-    description: "얼음과 불의 노래",
-  },
+const WriterChapter = () => {
+  // 데이터를 가져오는 작업
+  const location = useLocation();
+  const state =
+    location.state || JSON.parse(localStorage.getItem("currentNovel"));
+  if (location.state)
+    localStorage.setItem("currentNovel", JSON.stringify(location.state));
+
+  console.log(state);
+
+  return (
+    <>
+      <Link
+        to={`/novel-list/writer/novel/editor/${state.novelTitle}?chapterNo=${
+          state.howManyChapter + 1
+        }`}
+        state={{
+          title: state.novelTitle,
+        }}
+      >
+        <button>챕터 작성하기</button>
+      </Link>
+    </>
+  );
 };
 
-const WriterChapter = () => {};
 export default WriterChapter;

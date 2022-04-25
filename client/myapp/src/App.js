@@ -5,6 +5,8 @@ import CreateNewNovel from "./pages/CreateNewNovel";
 import SearchResult from "./pages/SearchResult";
 import ReaderChapter from "./pages/ReaderChapter";
 import WriterChapter from "./pages/WriterChapter";
+import CreateNewChapter from "./pages/CreateNewChapter";
+import NavigationBar from "./components/NavigationBar";
 
 const App = () => {
   return (
@@ -17,6 +19,10 @@ const App = () => {
       <Route
         path="/novel-list/writer/novel/:title"
         element={<WriterChapter />}
+      />
+      <Route
+        path="/novel-list/writer/novel/editor/:title"
+        element={<CreateNewChapter />}
       />
     </Routes>
   );

@@ -47,6 +47,7 @@ const CreateNewNovel = () => {
     const submitData = {
       ...currentData,
       novelDescription: descriptionValue.current.value,
+      currentChapter: 0,
     };
     postData("upload/novel.json", submitData);
     userAccount.writingNovelList.push(submitData);

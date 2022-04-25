@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-
 import NavigationBar from "../components/NavigationBar";
 import GlobalStyle from "../GlobalStyle";
 import CurrentPoint from "../components/CurrentPoint";
 import NovelList from "../components/NovelList";
 import userAccount from "../components/userAccount";
-import { useEffect, useState } from "react";
-
-const StyledLink = styled(Link)`
-  //some CSS styles here
-`;
 
 const MyPage = () => {
   const currentWritingNovelList = [...userAccount.writingNovelList];
