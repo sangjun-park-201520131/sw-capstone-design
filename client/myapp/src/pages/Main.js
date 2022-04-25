@@ -1,6 +1,5 @@
 import NavigationBar from "../components/NavigationBar";
 import GlobalStyle from "../GlobalStyle";
-import { Link } from "react-router-dom";
 
 const Main = () => {
   return (

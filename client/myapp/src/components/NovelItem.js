@@ -8,15 +8,16 @@
 import { Link } from "react-router-dom";
 
 const NovelItem = ({ data, listId }) => {
+  console.log(data);
   return (
     <>
       <Link
         to={`/novel-list/writer/novel/${data.novelTitle}`}
         state={{
-          id: listId,
           novelTitle: data.novelTitle,
           novelDescription: data.novelDescription,
           selectedImageUrl: data.selectedImage.src,
+          howManyChapter: data.currentChapter,
         }}
       >
         <h3 style={{ marginTop: "10px", fontSize: "30px" }}>
