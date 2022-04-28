@@ -3,8 +3,9 @@ import { GoogleLogout } from "react-google-login";
 const clientId =
   "112172327061-95mqb878sgpt8t955rkkdug7mvgco8od.apps.googleusercontent.com";
 
-const LogoutButton = () => {
+const LogoutButton = ({ logoutHandler }) => {
   const onSuccess = () => {
+    logoutHandler(false);
     console.log("Log out successful!");
   };
 

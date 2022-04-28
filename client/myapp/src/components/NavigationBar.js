@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
-import { useEffect } from "react";
-import { gapi } from "gapi-script";
 import LogoutButton from "./LogoutButton";
+import { useEffect, useState } from "react";
+import { gapi } from "gapi-script";
 import "./NavigationBar.css";
 import {
   Navbar,
@@ -21,6 +21,11 @@ const clientId =
   "112172327061-95mqb878sgpt8t955rkkdug7mvgco8od.apps.googleusercontent.com";
 
 const NavigationBar = () => {
+  // 로그인 여부를 확인할 수 있는 state를 생성
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  console.log(isLoggedIn);
+
   // 로그인/로그아웃
   useEffect(() => {
     const start = () => {
@@ -41,32 +46,32 @@ const NavigationBar = () => {
             <img src={logo} />{" "}
           </Navbar.Brand>
           <Nav>
-            <div class="container-fluid">
-              <form class="d-flex">
+            <div className="container-fluid">
+              <form className="d-flex">
                 <input
-                  class="form-control me-2"
+                  className="form-control me-2"
                   type="search"
                   placeholder="검색어를 입력하세요"
                   aria-label="Search"
                 ></input>
-                <button class="btn btn-light" type="submit">
+                <button className="btn btn-light" type="submit">
                   Search
                 </button>
               </form>
             </div>
-            <li class="nav-item">
-              <a class="nav-link" href="Create/Novel">
+            <li className="nav-item">
+              <a className="nav-link" href="Create/Novel">
                 새 소설 등록
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Mypage">
+            <li className="nav-item">
+              <a className="nav-link" href="Mypage">
                 마이페이지
               </a>
             </li>
           </Nav>
-          <LoginButton />
-          <LogoutButton />
+          {!isLoggedIn && <LoginButton loginHandler={setIsLoggedIn} />}
+          {isLoggedIn && <LogoutButton logoutHandler={setIsLoggedIn} />}
         </Navbar>
       </div>
     </>
