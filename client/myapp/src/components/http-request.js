@@ -12,15 +12,18 @@ export const getData = async (url) => {
 };
 
 export const postData = async (url, data) => {
+  let returnValue;
   const result = await axios
-    .post(`https://localhost:8081/${url}`, data, {
+    .post(`http://localhost:8081/${url}`, data, {
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "same-origin",
     })
-    .then((response) => console.log(response))
+    .then((response) => {
+      console.log(response)
+      returnValue = response;
+    })
     .catch((error) => console.log(`POST ERROR! ${error}`));
-
-  return result;
+    return returnValue;
 };

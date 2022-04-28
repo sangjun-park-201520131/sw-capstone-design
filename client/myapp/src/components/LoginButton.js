@@ -6,15 +6,15 @@ const LoginButton = ({ loginHandler }) => {
   const clientId =
     "112172327061-95mqb878sgpt8t955rkkdug7mvgco8od.apps.googleusercontent.com";
 
-  const onSuccess = (res) => {
+  const onSuccess = async (res) => {
     loginHandler(true);
-    console.log("로그인 성공!", res.profileObj);
+    console.log("tokenId : ", res.tokenId);
 
-    const loginData = res.profileObj;
-
-    postData("/auth/google", {
-      googleTokenId: loginData.googleId,
-    });
+    const response = await postData("auth/google", {
+      googleTokenId: res.tokenId,
+    }).then(response => console.log(response.data.token));
+    
+    
   };
 
   const onFailure = (res) => {
