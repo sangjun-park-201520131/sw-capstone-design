@@ -13,7 +13,7 @@ export const getData = async (url) => {
 
 export const postData = async (url, data) => {
   const result = await axios
-    .post(`https://novel-and-default-rtdb.firebaseio.com/${url}`, data, {
+    .post(`https://localhost:8081/${url}`, data, {
       headers: {
         "Content-Type": "application/json",
       },
