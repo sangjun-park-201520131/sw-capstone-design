@@ -9,12 +9,11 @@ const LoginButton = ({ loginHandler }) => {
   const onSuccess = async (res) => {
     loginHandler(true);
     console.log("tokenId : ", res.tokenId);
+    localStorage.setItem("tokenId", JSON.stringify(res.tokenId));
 
-    const response = await postData("auth/google", {
+    await postData("auth/google", {
       googleTokenId: res.tokenId,
-    }).then(response => console.log(response.data.token));
-    
-    
+    }).then((response) => console.log(response.data.token));
   };
 
   const onFailure = (res) => {
