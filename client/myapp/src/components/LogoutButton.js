@@ -6,7 +6,6 @@ const clientId =
 const LogoutButton = ({ logoutHandler }) => {
   const onSuccess = () => {
     logoutHandler(false);
-    console.log("Log out successful!");
   };
 
   return (
