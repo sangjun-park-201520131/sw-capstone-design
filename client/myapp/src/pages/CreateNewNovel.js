@@ -1,41 +1,43 @@
 import DefaultImageSelectModal from "../components/DefaultImageSelectModal";
-import React, { useState, useReducer, useRef } from "react";
+import { BearerTokenContext } from "../App";
+import React, { useState, useReducer, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalStyle from "../GlobalStyle";
 import { postData } from "../components/http-request";
 import userAccount from "../components/userAccount";
-import { v4 as uuidv4 } from "uuid";
 
 const reducer = (state, action) => {
   if (action.type === "TITLE") {
-    return { ...state, novelTitle: action.value.trim() };
+    return { ...state, title: action.value.trim() };
   }
   if (action.type === "GENRE") {
-    return { ...state, novelGenre: action.value };
+    return { ...state, genre: action.value };
   }
   if (action.type === "IMAGE") {
-    return { ...state, selectedImage: action.value };
+    return { ...state, coverImage: action.value };
   }
   return {
-    novelTitle: "",
-    novelGenre: "fantasy",
-    selectedImage: null,
+    title: "",
+    genre: "fantasy",
+    coverImage: null,
     novelDescription: "",
   };
 };
 
 const CreateNewNovel = () => {
+  const { currentToken, setBearerToken } = useContext(BearerTokenContext);
   const descriptionValue = useRef(null);
   const [imageModal, setImageModal] = useState(false);
   const [currentData, changeCurrentData] = useReducer(reducer, {
-    novelTitle: "",
-    novelGenre: "fantasy",
-    selectedImage: null,
-    novelDescription: "",
-    userId: userAccount.userId,
-    novelId: uuidv4(),
+    title: "",
+    description: "",
+    genre: "fantasy",
+    defaultPrice: 1000,
+    coverImage: null,
   });
   const navigate = useNavigate();
+
+  console.log(currentToken);
 
   const executeModalHandler = (event) => {
     event.preventDefault();
@@ -46,9 +48,12 @@ const CreateNewNovel = () => {
     e.preventDefault();
     const submitData = {
       ...currentData,
-      novelDescription: descriptionValue.current.value,
+      description: descriptionValue.current.value,
       currentChapter: 0,
     };
+
+    console.log(submitData);
+
     postData("upload/novel.json", submitData);
     userAccount.writingNovelList.push(submitData);
     navigate("/mypage");
@@ -89,7 +94,9 @@ const CreateNewNovel = () => {
         </select>
         <br />
         <br />
-        <button onClick={executeModalHandler}>이미지 선택</button>
+        <h3>이미지 업로드하기</h3>
+        <input type="file" />
+        {/* <button onClick={executeModalHandler}>이미지 선택</button> */}
         {imageModal && (
           <DefaultImageSelectModal
             modalOpen={setImageModal}
