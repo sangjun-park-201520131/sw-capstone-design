@@ -21,12 +21,10 @@ const MyPage = () => {
           credentials: "same-origin",
         });
       const resData = await response.data;     
-      console.log(resData);
       setData(resData);
     }
     getWrittenNovelsData();
   }, [])
-
   // console.log(currentWritingNovelList);
 
 
