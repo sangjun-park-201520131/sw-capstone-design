@@ -12,3 +12,4 @@ ReactDOM.render(
   </CookiesProvider>,
   document.getElementById("root")
 );
+

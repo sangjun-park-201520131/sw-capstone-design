@@ -1,5 +1,5 @@
 import { useState, createContext } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Router } from "react-router-dom";
 import Main from "./pages/Main";
 import MyPage from "./pages/MyPage";
 import CreateNewNovel from "./pages/CreateNewNovel";
@@ -17,23 +17,23 @@ const App = () => {
   };
 
   return (
-    <BearerTokenContext.Provider value={{ currentToken, setBearerToken }}>
-      <Routes>
-        <Route index element={<Main />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/create/novel" element={<CreateNewNovel />} />
-        <Route path="/search" element={<SearchResult />} />
-        <Route path="/novel-list/novel/:title" element={<ReaderChapter />} />
-        <Route
-          path="/novel-list/writer/novel/:title"
-          element={<WriterChapter />}
-        />
-        <Route
-          path="/novel-list/writer/novel/editor/:title"
-          element={<CreateNewChapter />}
-        />
-      </Routes>
-    </BearerTokenContext.Provider>
+      <BearerTokenContext.Provider value={{ currentToken: currentToken, setBearerToken }}>
+        <Routes>
+          <Route index element={<Main />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/create/novel" element={<CreateNewNovel />} />
+          <Route path="/search" element={<SearchResult />} />
+          <Route path="/novel-list/novel/:title" element={<ReaderChapter />} />
+          <Route
+            path="/novel-list/writer/novel/:title"
+            element={<WriterChapter />}
+          />
+          <Route
+            path="/novel-list/writer/novel/editor/:title"
+            element={<CreateNewChapter />}
+          />
+        </Routes>
+      </BearerTokenContext.Provider>
   );
 };
 

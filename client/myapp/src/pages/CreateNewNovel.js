@@ -1,10 +1,12 @@
 import DefaultImageSelectModal from "../components/DefaultImageSelectModal";
+import { Link } from "react-router-dom";
 import { BearerTokenContext } from "../App";
 import React, { useState, useReducer, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalStyle from "../GlobalStyle";
 import { postData } from "../components/http-request";
 import userAccount from "../components/userAccount";
+import axios from "axios";
 
 const reducer = (state, action) => {
   if (action.type === "TITLE") {
@@ -14,47 +16,56 @@ const reducer = (state, action) => {
     return { ...state, genre: action.value };
   }
   if (action.type === "IMAGE") {
-    return { ...state, coverImage: action.value };
+    return { ...state, coverImage: JSON.stringify(action.value) };
   }
   return {
     title: "",
-    genre: "fantasy",
-    coverImage: null,
+    genre: "판타지",
     novelDescription: "",
   };
 };
 
 const CreateNewNovel = () => {
   const { currentToken, setBearerToken } = useContext(BearerTokenContext);
-  const descriptionValue = useRef(null);
   const [imageModal, setImageModal] = useState(false);
+
+  const descriptionValue = useRef(null);
+  const navigate = useNavigate();  
   const [currentData, changeCurrentData] = useReducer(reducer, {
     title: "",
     description: "",
-    genre: "fantasy",
+    genre: "판타지",
     defaultPrice: 1000,
-    coverImage: null,
+    coverImage: null, 
   });
-  const navigate = useNavigate();
 
-  console.log(currentToken);
+  const showImageModalHandler = (e) => {
+    e.preventDefault();
+    setImageModal(true);
+  }
 
   const executeModalHandler = (event) => {
     event.preventDefault();
-    setImageModal(true);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const uploadImageHandler = async (event) => {}
+
+  const handleSubmit = async () => {
     const submitData = {
       ...currentData,
       description: descriptionValue.current.value,
-      currentChapter: 0,
-    };
+    }; 
+  
+    const bearerToken = localStorage.getItem('bearerToken');
+    
+    // await axios.post("http://localhost:8081/upload/novel", submitData, {
+    //   headers: {
+    //     authorization: `Bearer ${bearerToken}`,
+    //     "Content-Type": "application/json",
+    //   }
+    // })
 
-    console.log(submitData);
-
-    postData("upload/novel.json", submitData);
+    await postData("upload/novel", submitData, bearerToken);
     userAccount.writingNovelList.push(submitData);
     navigate("/mypage");
   };
@@ -94,17 +105,6 @@ const CreateNewNovel = () => {
         </select>
         <br />
         <br />
-        <h3>이미지 업로드하기</h3>
-        <input type="file" />
-        {/* <button onClick={executeModalHandler}>이미지 선택</button> */}
-        {imageModal && (
-          <DefaultImageSelectModal
-            modalOpen={setImageModal}
-            selectNovelImg={changeCurrentData}
-          />
-        )}
-        <br />
-        <br />
         <label htmlFor="description">작품 소개</label>
         <textarea
           id="description"
@@ -116,7 +116,19 @@ const CreateNewNovel = () => {
         />
         <br />
         <br />
-        <button type="submit">소설 올리기</button>
+        <button type="button" onClick={showImageModalHandler} style={{ margin: "20px"}}>이미지 업로드하기</button>
+        {imageModal && (
+          <DefaultImageSelectModal
+            modalOpen={setImageModal}
+            selectNovelImg={changeCurrentData}
+          />
+        )}
+          <button type="submit" onClick={() => {
+            handleSubmit();
+            navigate('/mypage');
+          }}>
+            소설 올리기
+          </button>
       </form>
     </>
   );

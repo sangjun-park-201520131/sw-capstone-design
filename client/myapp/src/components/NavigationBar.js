@@ -24,8 +24,6 @@ const NavigationBar = () => {
   // 로그인 여부를 확인할 수 있는 state를 생성
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  console.log(isLoggedIn);
-
   // 로그인/로그아웃
   useEffect(() => {
     const start = () => {
@@ -60,12 +58,12 @@ const NavigationBar = () => {
               </form>
             </div>
             <li className="nav-item">
-              <a className="nav-link" href="Create/Novel">
-                새 소설 등록
-              </a>
+              <Link className="nav-link" to={{
+                pathname: "/create/novel", 
+              }}>새 소설 등록</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="Mypage">
+              <a className="nav-link" href="/mypage">
                 마이페이지
               </a>
             </li>

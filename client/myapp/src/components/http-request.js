@@ -1,14 +1,19 @@
+import { useState } from "react";
 import axios from "axios";
 
-export const getData = async (url) => {
-  const result = axios
-    .get(`https://novel-and-default-rtdb.firebaseio.com/${url}`, {
+export const getData = async (url, bearerToken) => {
+  
+  let returnData
+  
+  axios.get(`http://localhost:8081/${url}`, {
+      headers: {
+        Authorization: `Bearer ${bearerToken || ""}`,
+      },
       credentials: "same-origin",
     })
-    .then((response) => console.log(response))
+    .then((response) => (response.data))
     .catch((error) => console.error(`GET ERROR! ${error}`));
-
-  return result;
+  return returnData;
 };
 
 export const postData = async (url, data, token) => {
@@ -22,7 +27,7 @@ export const postData = async (url, data, token) => {
         Authorization: `Bearer ${bearerToken || ""}`,
         "Content-Type": "application/json",
       },
-      credentials: "same-origin",
+      credentials: "same-origin", 
     })
     .then((response) => {
       console.log(response);

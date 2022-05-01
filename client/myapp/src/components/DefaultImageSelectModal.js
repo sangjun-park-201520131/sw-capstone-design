@@ -50,7 +50,7 @@ const DefaultImageSelectModal = ({ modalOpen, selectNovelImg }) => {
                       src={image.src}
                       alt={`default-img ${idx}`}
                       onClick={() => imageSelectedHandler(image.id)}
-                      style={{ height: "300px", width: "500px" }}
+                      style={{ height: "100px", width: "100px" }}
                     />
                   </li>
                 );
