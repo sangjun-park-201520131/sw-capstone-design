@@ -5,7 +5,7 @@ import MyPage from "./pages/MyPage";
 import CreateNewNovel from "./pages/CreateNewNovel";
 import SearchResult from "./pages/SearchResult";
 import ReaderChapter from "./pages/ReaderChapter";
-import WriterChapter from "./pages/WriterChapter";
+import WriterChapter from "./pages/WriterChapterPage/WriterChapter"
 import CreateNewChapter from "./pages/CreateNewChapter";
 
 export const BearerTokenContext = createContext();

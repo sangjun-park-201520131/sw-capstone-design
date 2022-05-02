@@ -23,8 +23,8 @@ const LoginButton = ({ loginHandler }) => {
       setBearerToken(response.data.token);
       localStorage.removeItem("bearerToken");
       localStorage.setItem("bearerToken", response.data.token);
-
       const bearerToken = localStorage.getItem("bearerToken");
+      
       setBearerToken(bearerToken);
     });
   };
