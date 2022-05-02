@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
+import WriterChapterItem from './WriterChapterItem';
+
+
 // /info/novel/:novelId
 
 const WriterChapter = () => {
@@ -35,7 +38,7 @@ const WriterChapter = () => {
     }, 500);
   }, []);
 
-  console.log(chapterData);
+
 
   const state =
     location.state || JSON.parse(localStorage.getItem("currentNovel"));
@@ -45,7 +48,14 @@ const WriterChapter = () => {
   return (
     <>
       {!chapterData && <h1>로딩중입니다...</h1>}
-      {chapterData && }
+      {chapterData && <div>
+        <h1>
+        현재 작성한 챕터 목록
+        </h1>
+        <ul>
+          {chapterData.chapters.map((chapterObj, idx) => <WriterChapterItem value={[chapterObj, idx]} key={idx}/>)}
+        </ul>
+      </div>}
       <Link
         to={`/novel-list/writer/novel/editor/${state.title}`}
         state={{

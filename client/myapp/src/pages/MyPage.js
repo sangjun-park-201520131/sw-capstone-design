@@ -13,6 +13,7 @@ const MyPage = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
+
     const getWrittenNovelsData = async () => {
       const response = await axios.get(`http://localhost:8081/written/novel`, {
           headers: {
@@ -23,10 +24,17 @@ const MyPage = () => {
       const resData = await response.data;     
       setData(resData);
     }
-    getWrittenNovelsData();
-  }, [])
+
+    setTimeout(() => {
+      getWrittenNovelsData();
+    }, 1000);
+    
+    }, [])     
+
+
   // console.log(currentWritingNovelList);
 
+  console.log(data);
 
   return (
     <>

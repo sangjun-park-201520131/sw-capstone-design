@@ -23,17 +23,22 @@ const clientId =
 const NavigationBar = () => {
   // 로그인 여부를 확인할 수 있는 state를 생성
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [bearerToken, setBearerToken] = useState(null);
 
   // 로그인/로그아웃
   useEffect(() => {
-    const start = () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "",
-      });
-    };
-
-    gapi.load("client:auth2", start);
+    setTimeout(() => {
+      const start = () => {
+        gapi.client.init({
+          clientId: clientId,
+          scope: "",
+        });
+      };
+      gapi.load("client:auth2", start);
+  
+      const getBearerToken = localStorage.getItem("bearerToken");
+      setBearerToken(getBearerToken);
+    }, 500)
   }, []);
 
   return (
@@ -57,16 +62,21 @@ const NavigationBar = () => {
                 </button>
               </form>
             </div>
-            <li className="nav-item">
-              <Link className="nav-link" to={{
-                pathname: "/create/novel", 
-              }}>새 소설 등록</Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/mypage">
-                마이페이지
-              </a>
-            </li>
+            {bearerToken &&
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to={{
+                  pathname: "/create/novel", 
+                }}>새 소설 등록</Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/mypage">
+                  마이페이지
+                </a>
+              </li>
+            </>
+            }
+
           </Nav>
           {!isLoggedIn && <LoginButton loginHandler={setIsLoggedIn} />}
           {isLoggedIn && <LogoutButton logoutHandler={setIsLoggedIn} />}
