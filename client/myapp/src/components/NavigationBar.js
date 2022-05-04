@@ -1,21 +1,12 @@
+import React from"react";
 import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { useEffect, useState } from "react";
 import { gapi } from "gapi-script";
 import "./NavigationBar.css";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  NavDropdown,
-  span,
-} from "react-bootstrap";
-import logo from "../logo.svg";
-import "bootstrap/dist/css/bootstrap.min.css";
+import SearchIcon from '@material-ui/icons/Search'; 
+
 
 const clientId =
   "112172327061-95mqb878sgpt8t955rkkdug7mvgco8od.apps.googleusercontent.com";
@@ -44,43 +35,21 @@ const NavigationBar = () => {
   return (
     <>
       <div className="NavigationBar">
-        <Navbar bg="myColor" variant="dark">
-          <Navbar.Brand href="./">
-            <img src={logo} />{" "}
-          </Navbar.Brand>
-          <Nav>
-            <div className="container-fluid">
-              <form className="d-flex">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="검색어를 입력하세요"
-                  aria-label="Search"
-                ></input>
-                <button className="btn btn-light" type="submit">
-                  Search
-                </button>
-              </form>
-            </div>
-            {bearerToken &&
-            <>
-              <li className="nav-item">
-                <Link className="nav-link" to={{
-                  pathname: "/create/novel", 
-                }}>새 소설 등록</Link>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/mypage">
-                  마이페이지
-                </a>
-              </li>
-            </>
-            }
-
-          </Nav>
-          {!isLoggedIn && <LoginButton loginHandler={setIsLoggedIn} />}
-          {isLoggedIn && <LogoutButton logoutHandler={setIsLoggedIn} />}
-        </Navbar>
+        <a href="/"><img className="navbar-logo" src = "assets/navbar-logo.svg"/></a>
+        <div className="navbar_search">
+          <input className="navbar_searchInput" type="/text"></input>
+          <a href="/search"><SearchIcon className="navbar_searchIcon"></SearchIcon></a>
+        </div>
+        <div className="navbar_menu">
+          <a className="navbar_option" href="Mypage">
+            마이페이지
+          </a>
+          <a className="navbar_option" href="create/novel">
+            새 소설 등록
+          </a>
+        </div>
+        {!isLoggedIn && <LoginButton loginHandler={setIsLoggedIn} />}
+        {isLoggedIn && <LogoutButton logoutHandler={setIsLoggedIn} />}
       </div>
     </>
   );

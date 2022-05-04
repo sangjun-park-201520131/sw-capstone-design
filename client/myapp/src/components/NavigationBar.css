@@ -1,17 +1,66 @@
-.bg-myColor {
-  background-color: #38d9a9;
+.NavigationBar{
+  height: 86px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+  padding: 10px;
 }
-.navbar-brand img {
-  width: 50px;
-  margin-top: -7px;
-  margin-bottom: -7px;
+.navbar_logo{
+  width: 200px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 0px;
+}
+
+.navbar_search{
+  width: 200px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 20px;
+
+}
+
+.navbar_searchInput{
+  height:28px;
+  padding:10px;
+  border: none;
+  width: 95%;
+  margin-right: 8px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid #38d9a9;
+}
+
+.navbar_searchIcon {
+  background-color: transparent;
+  color:#38d9a9;
+  size:10px;
+}
+
+a{
+  text-decoration-line: none;
+}
+
+.navbar_option{
+  display: flex;
+  flex-direction: column;
   margin-left: 10px;
+  margin-right: 10px;
+  color: #38d9a9;
+  font-size: 11px;
 }
 
-.container-fluid {
-  width: 500px;
+.navbar_menu{
+  display:flex;
+  justify-content: space-evenly;
 }
 
-.btn {
-  background-color: #38d9a9;
-}
+.logInOut{
+  z-index: 100;
+} 
