@@ -7,7 +7,8 @@ const clientId =
 
 const LogoutButton = ({ logoutHandler }) => {
   const onSuccess = () => {
-    localStorage.removeItem("bearerToken");
+    logoutHandler(false);
+    localStorage.removeItem("bearerToken"); 
   };
 
   useEffect(() => {

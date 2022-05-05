@@ -8,13 +8,13 @@ import CurrentPoint from "../components/CurrentPoint";
 import NovelList from "../components/NovelList";
 import userAccount from "../components/userAccount";
 import "./MyPage.css"
+import Card from "../UI/Card"
 
 const MyPage = () => {
   const bearerToken = localStorage.getItem('bearerToken');
   const [data, setData] = useState(null);
 
   useEffect(() => {
-
     const getWrittenNovelsData = async () => {
       const response = await axios.get(`http://localhost:8081/written/novel`, {
           headers: {
@@ -29,8 +29,7 @@ const MyPage = () => {
     setTimeout(() => {
       getWrittenNovelsData();
     }, 1000);
-    
-    }, [])     
+  }, [])     
 
 
   // console.log(currentWritingNovelList);
@@ -43,6 +42,7 @@ const MyPage = () => {
       <NavigationBar />
       <h1>마이페이지</h1>
       <br />
+      {/* <Card/> */}
       <br />
       {!data && <h1>로딩중입니다...</h1>}
       {data && <div>
@@ -54,21 +54,23 @@ const MyPage = () => {
           {/* <NovelList title="구매한 소설 목록" value={currentPurchasedNovelList} /> */}
         </div>
         <table className="novel_table">
-          <tr>
-            <td><div className="novel_box"><Link className="novel_title" to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
-            <td><div className="novel_box"><Link className="novel_title" to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
-            <td><div className="novel_box"><Link className="novel_title" to="/novel-list/writer/novel">소설2</Link></div></td>
-          </tr>
-          <tr>
-            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
-            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
-            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/writer/novel">소설2</Link></div></td>
-          </tr>
-          <tr>
-            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
-            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
-            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/writer/novel">소설2</Link></div></td>
-          </tr>
+          <tbody>
+            <tr>
+              <td><div className="novel_box"><Link className="novel_title" to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
+              <td><div className="novel_box"><Link className="novel_title" to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
+              <td><div className="novel_box"><Link className="novel_title" to="/novel-list/writer/novel">소설2</Link></div></td>
+            </tr>
+            <tr>
+              <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
+              <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
+              <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/writer/novel">소설2</Link></div></td>
+            </tr>
+            <tr>
+              <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
+              <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
+              <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/writer/novel">소설2</Link></div></td>
+            </tr>
+          </tbody>
         </table>
       </div>}
       

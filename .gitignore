@@ -1,3 +1,5 @@
 server/node_modules
 server/.env
-server/uploads/chapters
+server/uploads/chapters/*
+server/uploads/illusts/*
+server/uploads/music/*

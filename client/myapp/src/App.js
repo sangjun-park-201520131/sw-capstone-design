@@ -7,6 +7,11 @@ import SearchResult from "./pages/SearchResult";
 import ReaderChapter from "./pages/ReaderChapter";
 import WriterChapter from "./pages/WriterChapterPage/WriterChapter"
 import CreateNewChapter from "./pages/CreateNewChapter";
+import SelectIllustAndMusic from "./pages/SelectIllustAndMusicPage/SelectIllustAndMusic";
+import IllustEditor from "./pages/IllustEditorPage/IllustEditor";
+import Viewer from "./pages/ViewerPage/Viewer";
+
+// /novel-list/novel/${value[0].id}/add-illust
 
 export const BearerTokenContext = createContext();
 
@@ -24,6 +29,9 @@ const App = () => {
           <Route path="/create/novel" element={<CreateNewNovel />} />
           <Route path="/search" element={<SearchResult />} />
           <Route path="/novel-list/novel/:title" element={<ReaderChapter />} />
+          <Route path="/novel-list/novel/:chapterId/select" element={<SelectIllustAndMusic />} />
+          <Route path="/novel-list/novel/:chapterId/viewer" element={<Viewer />} />
+          <Route path="/novel-list/novel/:chapterId/add-illust" element={<IllustEditor />}/>
           <Route
             path="/novel-list/writer/novel/:title"
             element={<WriterChapter />}

@@ -29,7 +29,7 @@ const NavigationBar = () => {
   
       const getBearerToken = localStorage.getItem("bearerToken");
       setBearerToken(getBearerToken);
-    }, 500)
+    }, 2000)
   }, []);
 
   return (
@@ -40,14 +40,14 @@ const NavigationBar = () => {
           <input className="navbar_searchInput" type="/text"></input>
           <a href="/search"><SearchIcon className="navbar_searchIcon"></SearchIcon></a>
         </div>
-        <div className="navbar_menu">
+        {isLoggedIn && <div className="navbar_menu">
           <a className="navbar_option" href="Mypage">
             마이페이지
           </a>
           <a className="navbar_option" href="create/novel">
             새 소설 등록
           </a>
-        </div>
+        </div>}
         {!isLoggedIn && <LoginButton loginHandler={setIsLoggedIn} />}
         {isLoggedIn && <LogoutButton logoutHandler={setIsLoggedIn} />}
       </div>
