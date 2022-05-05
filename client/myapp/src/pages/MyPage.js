@@ -7,6 +7,7 @@ import GlobalStyle from "../GlobalStyle";
 import CurrentPoint from "../components/CurrentPoint";
 import NovelList from "../components/NovelList";
 import userAccount from "../components/userAccount";
+import "./MyPage.css"
 
 const MyPage = () => {
   const bearerToken = localStorage.getItem('bearerToken');
@@ -48,12 +49,27 @@ const MyPage = () => {
         <CurrentPoint />
         <br />
         <br />
-        <NovelList title="내가 쓴 소설 목록" value={data} />
-        {/* <NovelList title="구매한 소설 목록" value={currentPurchasedNovelList} /> */}
-
-        <Link to="/novel-list/novel/harrypotter">해리포터</Link>
-        <Link to="/novel-list/novel/gameofthrones">왕좌의 게임</Link>
-        <Link to="/novel-list/writer/novel">소설2</Link>
+        <div className="novel_list">
+          <NovelList title="내가 쓴 소설 목록" value={data} />
+          {/* <NovelList title="구매한 소설 목록" value={currentPurchasedNovelList} /> */}
+        </div>
+        <table className="novel_table">
+          <tr>
+            <td><div className="novel_box"><Link className="novel_title" to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
+            <td><div className="novel_box"><Link className="novel_title" to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
+            <td><div className="novel_box"><Link className="novel_title" to="/novel-list/writer/novel">소설2</Link></div></td>
+          </tr>
+          <tr>
+            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
+            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
+            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/writer/novel">소설2</Link></div></td>
+          </tr>
+          <tr>
+            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
+            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/novel/gameofthrones">왕좌의 게임</Link></div></td>
+            <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/writer/novel">소설2</Link></div></td>
+          </tr>
+        </table>
       </div>}
       
     </>
