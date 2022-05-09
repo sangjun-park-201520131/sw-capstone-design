@@ -1,2 +1,9 @@
 server/node_modules
 server/.env
+<<<<<<< HEAD
+server/uploads/chapters/*
+server/uploads/illusts/*
+server/uploads/music/*
+=======
+server/uploads
+>>>>>>> 94e5cf9bcbfdb645b7df5859357f2bc542a2a950

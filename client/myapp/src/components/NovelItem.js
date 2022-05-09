@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 const NovelItem = ({ data, listId }) => {
 
   const coverImageSrcData = data.coverFileName;
-  console.log(data);
 
   return (
     <>
@@ -19,8 +18,9 @@ const NovelItem = ({ data, listId }) => {
         state={{
           title: data.title,
           description: data.description,
-          coverImage: data.coverImage,
-          howManyChapter: data.currentChapter,
+          coverImage: data.coverFileName,
+          novelId: data.id, 
+          genre: data.genre,
         }}
       >
         <h3 style={{ marginTop: "10px", fontSize: "15px" }}>

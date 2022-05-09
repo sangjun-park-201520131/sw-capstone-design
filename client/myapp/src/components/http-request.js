@@ -30,7 +30,6 @@ export const postData = async (url, data, token) => {
       credentials: "same-origin", 
     })
     .then((response) => {
-      console.log(response);
       returnValue = response;
     })
     .catch((error) => console.log(`POST ERROR! ${error}`));
