@@ -41,6 +41,7 @@ const CreateNewNovel = () => {
 
   const showImageModalHandler = (e) => {
     e.preventDefault();
+    console.log('안녕하세요');
     setImageModal(true);
   }
 

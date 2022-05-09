@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import IllustList from './IllustList';
+import { getData } from '../../components/http-request';
 
 const SelectIllustAndMusic = () => {
   const location = useLocation();
-
+  
   return (
     <div>
       <h1>일러스트/음악 선택</h1>

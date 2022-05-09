@@ -1,19 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
 
-export const getData = async (url, bearerToken) => {
-  
-  let returnData
-  
-  axios.get(`http://localhost:8081/${url}`, {
+export const getData = async (url, bearerToken) => {  
+  const response = await axios.get(`http://localhost:8081/${url}`, {
       headers: {
         Authorization: `Bearer ${bearerToken || ""}`,
       },
       credentials: "same-origin",
     })
-    .then((response) => (response.data))
-    .catch((error) => console.error(`GET ERROR! ${error}`));
-  return returnData;
+  const responseData = await response.data;
+  
+  return responseData;
 };
 
 export const postData = async (url, data, token) => {

@@ -1801,21 +1801,7 @@
   dependencies:
     tui-color-picker "^2.2.6"
 
-"@toast-ui/editor@^3.1.3":
-  version "3.1.5"
-  resolved "https://registry.npmjs.org/@toast-ui/editor/-/editor-3.1.5.tgz"
-  integrity sha512-epcZIcoJ5x7TI8mCvDXEvmAHEjPAyGVfqZDrjx9QpSOYlyW4ZAZfQ36QG4QbWVXVdJrwUoh4w9pMjOThYSSbLQ==
-  dependencies:
-    dompurify "^2.3.3"
-    prosemirror-commands "^1.1.9"
-    prosemirror-history "^1.1.3"
-    prosemirror-inputrules "^1.1.3"
-    prosemirror-keymap "^1.1.4"
-    prosemirror-model "^1.14.1"
-    prosemirror-state "^1.3.4"
-    prosemirror-view "^1.18.7"
-
-"@toast-ui/editor@^3.1.5":
+"@toast-ui/editor@^3.1.3", "@toast-ui/editor@^3.1.5":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@toast-ui/editor/-/editor-3.1.5.tgz#b47c3d94c23a4f0f6a653975b0b4b35b0035d31f"
   integrity sha512-epcZIcoJ5x7TI8mCvDXEvmAHEjPAyGVfqZDrjx9QpSOYlyW4ZAZfQ36QG4QbWVXVdJrwUoh4w9pMjOThYSSbLQ==
