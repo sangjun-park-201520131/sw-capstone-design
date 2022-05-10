@@ -29,12 +29,7 @@ const MyPage = () => {
     setTimeout(() => {
       getWrittenNovelsData();
     }, 1000);
-  }, [])     
-
-
-  // console.log(currentWritingNovelList);
-
-  console.log(data);
+  }, []);
 
   return (
     <>

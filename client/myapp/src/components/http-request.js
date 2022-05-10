@@ -14,21 +14,15 @@ export const getData = async (url, bearerToken) => {
 };
 
 export const postData = async (url, data, token) => {
-  let returnValue;
-
   const bearerToken = token ? token : null;
-
-  await axios
-    .post(`http://localhost:8081/${url}`, data, {
+  const response = await axios.post(`http://localhost:8081/${url}`, data, {
       headers: {
         Authorization: `Bearer ${bearerToken || ""}`,
         "Content-Type": "application/json",
       },
       credentials: "same-origin", 
     })
-    .then((response) => {
-      returnValue = response;
-    })
-    .catch((error) => console.log(`POST ERROR! ${error}`));
-  return returnValue;
+  const responseData = response.data;
+  
+  return responseData;
 };

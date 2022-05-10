@@ -34,7 +34,6 @@ const ToastUIEditor = () => {
     // 일러스트 위치 정보 꺼내기
     for (let idx = 0; idx < sumLength; idx++) {
       const findImageIndex = currentContent.indexOf("![alt text]", idx);
-      console.log(findImageIndex);
       if (findImageIndex === -1) break;
       imageIdxData.push(findImageIndex);
       idx = findImageIndex;
