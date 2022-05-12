@@ -1,6 +1,8 @@
 import NavigationBar from "../components/NavigationBar";
 import GlobalStyle from "../GlobalStyle";
 import "./Main.css";
+import NovelCard from "../components/NovelCard";
+import NovelContainer from "../components/NovelContainer";
 
 const Main = () => {
   return (
@@ -10,6 +12,8 @@ const Main = () => {
       <div className="main_container">
         <img className="main_image" src="assets/intro.png" 
         alt=""/>
+        {/* Card예시*/}
+        <NovelContainer/>
         {/*내용시작*/}
         <div className="section_one">
           <div className="section_one_text">

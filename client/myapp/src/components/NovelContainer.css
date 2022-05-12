@@ -1,0 +1,9 @@
+.container{
+    margin:0px;
+    padding: 0;
+    width:38%;
+    align-self: center;
+}
+.row{
+    width:500px;
+}
