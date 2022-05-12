@@ -31,9 +31,7 @@ const UploadMusicPage = () => {
     await postData('upload/music', formData, bearerToken);
   };
 
-  console.log(musicTitle);
-
-  return <>
+  return <> 
     <h1>음악 업로드하기</h1>
     <h3>업로드하고자 하는 음악을 올려주세요!</h3>
     <form>
@@ -41,9 +39,12 @@ const UploadMusicPage = () => {
         음악 제목
         <input id="music-title" type="text" name="name" onChange={musicTitleChangeHandler} required/>
       </label>
-      
+      <br />
+      <br />
       <input type="file" onChange={onFileChange}/>
     </form>
+    <br />
+    <br />
     <Link to="/mypage">
       <button onClick={uploadMusicHandler}>음악 업로드</button>
     </Link>

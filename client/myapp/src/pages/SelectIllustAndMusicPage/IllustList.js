@@ -32,7 +32,7 @@ const IllustList = ({ selectHandler, selectIdHandler, select }) => {
     <>
       {!urlData && <h1>로딩중입니다...</h1>}
       {!!urlData && !!urlData.length && <>
-        <h4>일러스트 목록</h4>
+        <h3>일러스트 목록</h3>
         {urlData.map((url, idx) => <IllustItem 
           key={idx} 
           url={url}

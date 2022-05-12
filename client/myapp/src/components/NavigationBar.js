@@ -5,6 +5,8 @@ import LogoutButton from "./LogoutButton";
 import { useEffect, useState } from "react";
 import { gapi } from "gapi-script";
 import "./NavigationBar.css";
+import {FaSearch} from "react-icons/fa";
+
 
 
 const clientId =
@@ -38,7 +40,7 @@ const NavigationBar = () => {
         <div className="navbar_search">
           <input className="navbar_searchInput" type="/text"></input>
           <a href="/search">
-            {/* <SearchIcon className="navbar_searchIcon"></SearchIcon> */}
+            <FaSearch /> {/* <SearchIcon className="navbar_searchIcon"></SearchIcon> */}
           </a>
         </div>
         {isLoggedIn && <div className="navbar_menu">

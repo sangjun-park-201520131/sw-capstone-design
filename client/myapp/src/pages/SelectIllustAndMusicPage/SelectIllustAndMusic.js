@@ -17,6 +17,8 @@ const SelectIllustAndMusic = () => {
   const deleteSelectedHandler = () => {
     setSelectedIllustItem(null);
     setSelectedIllustId(null);
+    setSelectedMusicItem(null);
+    setSelectedMusicId(null);
   }
 
   return (

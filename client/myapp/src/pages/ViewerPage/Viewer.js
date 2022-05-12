@@ -7,7 +7,7 @@ const Viewer = () => {
   return (
   <>
     <h1>뷰어</h1>
-    <ToastUIViewer illustId={location.state.selectedIllustId} />
+    <ToastUIViewer illustId={location.state.selectedIllustId} musicId={location.state.selectedMusicId} />
   </>
   );
 }

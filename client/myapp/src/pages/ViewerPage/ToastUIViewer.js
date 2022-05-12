@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { getData } from '../../components/http-request';
 import axios from 'axios';
 
-const ToastUIViewer = ({ illustId }) => {
+const ToastUIViewer = ({ illustId, musicId }) => {
   const bearerToken = localStorage.getItem('bearerToken');
   const location = useLocation();
   const [viewerContent, setViewerContent] = useState('');
@@ -25,7 +25,8 @@ const ToastUIViewer = ({ illustId }) => {
     };
 
     const getNovelDataFromServerWithIllust = async () => {
-      const responseData = await getData(`content/novel/${novelId}/chapter/${chapterId}?illustSet=${illustId}`);
+      const responseData = await getData(`content/novel/${novelId}/chapter/${chapterId}?illustSet=${illustId}&musicSet=${musicId}`);
+      console.log(responseData);
       const novelContent = await responseData.chapterContent; 
       setViewerContent(novelContent);
     }
