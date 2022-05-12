@@ -5,7 +5,6 @@ import LogoutButton from "./LogoutButton";
 import { useEffect, useState } from "react";
 import { gapi } from "gapi-script";
 import "./NavigationBar.css";
-import SearchIcon from '@material-ui/icons/Search'; 
 
 
 const clientId =
@@ -38,7 +37,9 @@ const NavigationBar = () => {
         <a href="/"><img className="navbar-logo" src = "assets/navbar-logo.svg"/></a>
         <div className="navbar_search">
           <input className="navbar_searchInput" type="/text"></input>
-          <a href="/search"><SearchIcon className="navbar_searchIcon"></SearchIcon></a>
+          <a href="/search">
+            {/* <SearchIcon className="navbar_searchIcon"></SearchIcon> */}
+          </a>
         </div>
         {isLoggedIn && <div className="navbar_menu">
           <a className="navbar_option" href="Mypage">

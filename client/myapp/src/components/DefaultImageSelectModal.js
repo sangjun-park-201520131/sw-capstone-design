@@ -29,47 +29,49 @@ const DefaultImageSelectModal = ({ modalOpen, selectNovelImg }) => {
   };
 
   return (
-    <Card>
-      {ReactDOM.createPortal(
-        <>
-          <header>
-            <h1>이미지 선택하기</h1>
-            <h4>이미지를 선택해 주세요</h4>
-          </header>
-          <main>
-            <ul className="images-grid">
-              {imgList.map((image, idx) => {
-                return (
-                  <li
-                    key={idx}
-                    className={
-                      currentSelectedImageId === image.id ? "active" : ""
-                    }
-                  >
-                    <img
-                      src={image.src}
-                      alt={`default-img ${idx}`}
-                      onClick={() => imageSelectedHandler(image.id)}
-                      style={{ height: "100px", width: "100px" }}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          </main>
-          <footer>
-            <button
-              disabled={!imageSelected}
-              onClick={addImageDataInNovelData.bind(this)}
-            >
-              선택하기
-            </button>
-            <button>취소</button>
-          </footer>
-        </>,
+      ReactDOM.createPortal(
+        <Card>
+          <>
+            <header>
+              <h1>이미지 선택하기</h1>
+              <h4>이미지를 선택해 주세요</h4>
+            </header>
+            <main>
+              <ul className="images-grid">
+                {imgList.map((image, idx) => {
+                  return (
+                    <li
+                      key={idx}
+                      className={
+                        currentSelectedImageId === image.id ? "active" : ""
+                      }
+                    >
+                      <img
+                        src={image.src}
+                        alt={`default-img ${idx}`}
+                        onClick={() => imageSelectedHandler(image.id)}
+                        style={{ height: "100px", width: "100px" }}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            </main>
+            <footer>
+              <button
+                disabled={!imageSelected}
+                onClick={addImageDataInNovelData.bind(this)}
+              >
+                선택하기
+              </button>
+              <button>취소</button>
+            </footer>
+          </>,
+        </Card>,
         document.getElementById("overlay-root")
-      )}
-    </Card>
+      )
+       
+
   );
 };
 

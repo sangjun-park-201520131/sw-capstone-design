@@ -2,11 +2,10 @@ import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getData } from '../../components/http-request';
 import axios from 'axios';
 
-
-
-const ToastUIViewer = () => {
+const ToastUIViewer = ({ illustId }) => {
   const bearerToken = localStorage.getItem('bearerToken');
   const location = useLocation();
   const [viewerContent, setViewerContent] = useState('');
@@ -24,7 +23,15 @@ const ToastUIViewer = () => {
       const content = await responseData.data.chapterContent;
       setViewerContent(content);
     };
-    getNovelDataFromServer();
+
+    const getNovelDataFromServerWithIllust = async () => {
+      const responseData = await getData(`content/novel/${novelId}/chapter/${chapterId}?illustSet=${illustId}`);
+      const novelContent = await responseData.chapterContent; 
+      setViewerContent(novelContent);
+    }
+
+    !illustId && getNovelDataFromServer();
+    illustId && getNovelDataFromServerWithIllust();
   }, []);
 
   return (
