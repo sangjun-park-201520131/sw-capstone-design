@@ -43,14 +43,9 @@ const CreateNewNovel = () => {
 
   const showImageModalHandler = (e) => {
     e.preventDefault();
+    console.log('안녕하세요');
     setImageModal(true);
   }
-
-  const executeModalHandler = (event) => {
-    event.preventDefault();
-  };
-
-  const uploadImageHandler = async (event) => {}
 
   const handleSubmit = async () => {
     const submitData = {
@@ -59,13 +54,6 @@ const CreateNewNovel = () => {
     }; 
   
     const bearerToken = localStorage.getItem('bearerToken');
-    
-    // await axios.post("http://localhost:8081/upload/novel", submitData, {
-    //   headers: {
-    //     authorization: `Bearer ${bearerToken}`,
-    //     "Content-Type": "application/json",
-    //   }
-    // })
 
     await postData("upload/novel", submitData, bearerToken);
     userAccount.writingNovelList.push(submitData);
