@@ -1,4 +1,5 @@
 import NovelItem from "./NovelItem";
+import "./NovelList.css";
 
 const NovelList = ({ title, value }) => {
   return (

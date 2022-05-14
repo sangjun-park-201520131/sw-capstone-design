@@ -1,19 +1,27 @@
 import React from "react";
 import "./NovelCard.css";
 import {Card, Container, Button} from'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const NovelCard = () => {
+const NovelCard = ({ data }) => {
+    console.log(data);
     return(
         <>
             <Container>
                 <Card className="cards">
-                    <Card.Img className="cards_Img" variant="top" src="holder.js/100px180" />
+                    <Card.Img className="cards_Img" variant="top" src={data.coverFileName} />
                     <Card.Body>
-                        <Card.Title>소설 제목</Card.Title>
-                        <Card.Text>
-                        간단한 소설 소개
-                        </Card.Text>
-                        <Button variant="success">소설 챕터 목록</Button>
+                        <Card.Title>{data.title}</Card.Title>
+                        {/* <Card.Text>
+                        {data.description}
+                        </Card.Text> */}
+                        <Link to={`/novel-list/writer/novel/${data.title}`} state={{
+                            ...data,
+                            novelId: data.id,
+                        }}>
+                        <Card.Text>{data.genre}</Card.Text>
+                            <Button variant="success">소설 챕터 목록</Button>
+                        </Link>
                     </Card.Body>
                 </Card>
             </Container>

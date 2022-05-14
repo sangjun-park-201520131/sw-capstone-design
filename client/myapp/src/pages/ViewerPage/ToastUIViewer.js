@@ -3,12 +3,14 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getData } from '../../components/http-request';
+import MusicPlayer from  './MusicPlayer';
 import axios from 'axios';
 
 const ToastUIViewer = ({ illustId, musicId }) => {
   const bearerToken = localStorage.getItem('bearerToken');
   const location = useLocation();
   const [viewerContent, setViewerContent] = useState('');
+  const [musicTrack, setMusicTrack] = useState(null);
   const {novelId, chapterId} = location.state;
 
   useEffect(() => {
@@ -24,19 +26,22 @@ const ToastUIViewer = ({ illustId, musicId }) => {
       setViewerContent(content);
     };
 
-    const getNovelDataFromServerWithIllust = async () => {
+    const getNovelDataFromServerWithIllustMusic = async () => {
       const responseData = await getData(`content/novel/${novelId}/chapter/${chapterId}?illustSet=${illustId}&musicSet=${musicId}`);
-      console.log(responseData);
+      if (responseData.musicTracks.length) {
+        setMusicTrack(responseData.musicTracks);
+      } 
       const novelContent = await responseData.chapterContent; 
       setViewerContent(novelContent);
     }
 
-    !illustId && getNovelDataFromServer();
-    illustId && getNovelDataFromServerWithIllust();
+    (!illustId && !musicId) && getNovelDataFromServer();
+    (illustId || musicId) && getNovelDataFromServerWithIllustMusic();
   }, []);
 
   return (
     <>
+      {musicTrack && musicTrack.length && <MusicPlayer musicList={musicTrack} />}
       {viewerContent && <Viewer initialValue={viewerContent} />}
     </>
   )

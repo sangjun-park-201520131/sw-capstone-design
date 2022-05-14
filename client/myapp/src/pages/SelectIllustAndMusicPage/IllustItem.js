@@ -1,3 +1,5 @@
+import "./IllustItem.css"
+
 const IllustItem = (props) => {
 
   return (<>
@@ -6,7 +8,7 @@ const IllustItem = (props) => {
         src={props.url}
         width="300px"
       />
-      <h4>{props.artist}</h4>
+      <h4 className="writer">작가: {props.artist}</h4>
     </li>
     {props.checked && <h3>선택됨</h3>}
   </>)

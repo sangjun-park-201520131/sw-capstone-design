@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getData } from "../../components/http-request";
 import  IllustItem from './IllustItem';
+import classes from './IllustList.module.css'
 
 
 const IllustList = ({ selectHandler, selectIdHandler, select }) => {
@@ -29,24 +30,26 @@ const IllustList = ({ selectHandler, selectIdHandler, select }) => {
 
 
   return (
-    <>
+    <div>
       {!urlData && <h1>로딩중입니다...</h1>}
-      {!!urlData && !!urlData.length && <>
+      {!!urlData && !!urlData.length && <div className={classes["illust-list"]}>
         <h3>일러스트 목록</h3>
-        {urlData.map((url, idx) => <IllustItem 
-          key={idx} 
-          url={url}
-          artist={artistData[idx]} 
-          illustId={idData[idx]}
-          checked={idx === select}
-          onSelect={(id) => {
-            selectHandler(idx);
-            selectIdHandler(id);
-          }}
-        />)}
+        <ul>
+          {urlData.map((url, idx) => <IllustItem 
+            key={idx} 
+            url={url}
+            artist={artistData[idx]} 
+            illustId={idData[idx]}
+            checked={idx === select}
+            onSelect={(id) => {
+              selectHandler(idx);
+              selectIdHandler(id);
+            }}
+          />)}
+        </ul>
         {!!urlData && !urlData.length && <h2>일러스트가 존재하지 않습니다 :/</h2>}
-      </>}
-    </>
+      </div>}
+    </div>
   )
 
   

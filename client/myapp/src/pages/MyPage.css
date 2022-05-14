@@ -1,11 +1,16 @@
-.novel_list{
-    background-color: blueviolet;
-    text-align: center;
+.novel_list ul {
+    display: flex;
+    align-items: center;
+    
     margin-top: 13px;
     margin-bottom: 20px;
     margin-left: 10px;
     font-size: larger;
     width: 310px;
+}
+
+.novel_list h3 {
+    margin-left: 10rem;
 }
 
 .novel_table{
@@ -27,4 +32,8 @@
 
 .novel_title{
     color:black;
+}
+
+.loading{
+    margin-top: 50px;
 }

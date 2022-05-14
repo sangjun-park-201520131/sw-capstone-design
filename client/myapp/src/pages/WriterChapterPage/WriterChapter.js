@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
-
+import NavigationBar from "../../components/NavigationBar";
 import WriterChapterItem from './WriterChapterItem';
 
 
@@ -53,6 +53,7 @@ const WriterChapter = () => {
 
   return (
     <>
+      <NavigationBar />
       {!chapterData && <h1>로딩중입니다</h1>}
       {
         (!!chapterData && !!chapterData.chapters.length) &&

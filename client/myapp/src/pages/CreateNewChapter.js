@@ -3,6 +3,7 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import { postData } from "../components/http-request";
+import classes from './CreateNewChapter.module.css';
 import axios from "axios";
 import React from "react";
 
@@ -30,6 +31,8 @@ const CreateNewChapter = () => {
 
   const data = location.state;
   const bearerToken = localStorage.getItem('bearerToken');
+
+
 
 
   const handleChangeEditor = async () => {
@@ -72,11 +75,13 @@ const CreateNewChapter = () => {
     });
   };
 
+  
+
   const submitHandler = async () => {
   };
 
   return (
-    <>
+    <div className={classes.chapter}>
       <h1>소설 작성하기</h1>
       <form onSubmit={submitHandler}>
         <div>
@@ -120,7 +125,7 @@ const CreateNewChapter = () => {
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

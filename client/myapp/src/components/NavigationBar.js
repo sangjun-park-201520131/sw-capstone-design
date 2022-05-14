@@ -15,7 +15,7 @@ const clientId =
 const NavigationBar = () => {
   // 로그인 여부를 확인할 수 있는 state를 생성
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [bearerToken, setBearerToken] = useState(null);
+  const [searchData, setSearchData] = useState(null);
 
   // 로그인/로그아웃
   useEffect(() => {
@@ -27,21 +27,20 @@ const NavigationBar = () => {
         });
       };
       gapi.load("client:auth2", start);
-  
-      const getBearerToken = localStorage.getItem("bearerToken");
-      setBearerToken(getBearerToken);
     }, 2000)
   }, []);
-
+  
   return (
     <>
       <div className="NavigationBar">
-        <a href="/"><img className="navbar-logo" src = "assets/navbar-logo.svg"/></a>
+        <a href="/"><img className="navbar-logo" src = "/assets/navbar-logo.svg"/></a>
         <div className="navbar_search">
-          <input className="navbar_searchInput" type="/text"></input>
-          <a href="/search">
-            <FaSearch /> {/* <SearchIcon className="navbar_searchIcon"></SearchIcon> */}
-          </a>
+          <input className="navbar_searchInput" type="/text" onChange={e => setSearchData(e.target.value)} />
+          <Link to="/search" state={{
+            searchData,
+          }}>
+              <FaSearch />
+          </Link>
         </div>
         {isLoggedIn && <div className="navbar_menu">
           <a className="navbar_option" href="Mypage">

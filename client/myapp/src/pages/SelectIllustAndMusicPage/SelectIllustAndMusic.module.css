@@ -1,0 +1,26 @@
+.page-title{
+  text-align: center;
+}
+.illust-music-grid {
+  border-style: double;
+  border-color: #38d9a9;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.illust-music-grid li {
+  list-style-type: none;
+}
+
+.choose-cancel{
+  margin: 5px;
+  float:left;
+}
+.chapter-read{
+  margin: 5px;
+  float:right;
+}
+.chapter-read Button{
+  background-color: #38d9a9;
+  border-color: #38d9a9;
+}

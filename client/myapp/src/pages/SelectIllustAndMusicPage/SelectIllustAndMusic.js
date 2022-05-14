@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import IllustList from './IllustList';
 import MusicList from './MusicList';
 import { useState } from 'react';
+import classes from './SelectIllustAndMusic.module.css';
+import { Button } from'react-bootstrap';
 
 
 const SelectIllustAndMusic = () => {
@@ -23,13 +25,15 @@ const SelectIllustAndMusic = () => {
 
   return (
     <div>
-      <h1>일러스트/음악 선택</h1>
-      <IllustList state={{
-        ...location.state
-      }} selectHandler={setSelectedIllustItem} selectIdHandler={setSelectedIllustId} select={selectedIllustItem}/>
-      <MusicList state={{
-        ...location.state
-      }} selectHandler={setSelectedMusicItem} selectIdHandler={setSelectedMusicId} select={selectedMusicItem}/>
+      <div className={classes["page-title"]}><h1>일러스트/음악 선택</h1></div>
+      <div className={classes["illust-music-grid"]}>
+        <IllustList state={{
+          ...location.state
+        }} selectHandler={setSelectedIllustItem} selectIdHandler={setSelectedIllustId} select={selectedIllustItem}/>
+        <MusicList state={{
+          ...location.state
+        }} selectHandler={setSelectedMusicItem} selectIdHandler={setSelectedMusicId} select={selectedMusicItem}/>
+      </div>
       <Link to={`/novel-list/novel/${location.state.chapterId}/viewer`} state={{
         ...location.state,
         novelId, 
@@ -37,9 +41,11 @@ const SelectIllustAndMusic = () => {
         selectedIllustId,
         selectedMusicId,
       }} >
-         <button>챕터 읽기</button>
+        <div className={classes["chapter-read"]}><Button variant="success">챕터 읽기</Button></div>
       </Link>
-      <button onClick={deleteSelectedHandler}>선택 취소하기</button>
+      <div className={classes["choose-cancel"]}><Button variant="secondary" onClick={deleteSelectedHandler}>선택 취소하기</Button></div>
+      
+
     </div>
   );
 }

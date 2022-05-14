@@ -9,6 +9,7 @@ import NovelList from "../components/NovelList";
 import userAccount from "../components/userAccount";
 import "./MyPage.css"
 import Card from "../UI/Card"
+import NovelContainer from "../components/NovelContainer";
 
 const MyPage = () => {
   const bearerToken = localStorage.getItem('bearerToken');
@@ -39,16 +40,16 @@ const MyPage = () => {
       <br />
       {/* <Card/> */}
       <br />
-      {!data && <h1>로딩중입니다...</h1>}
+      {!data && <h1 className="loading">로딩중입니다...</h1>}
       {data && <div>
         <CurrentPoint />
         <br />
         <br />
         <div className="novel_list">
-          <NovelList title="내가 쓴 소설 목록" value={data} />
-          {/* <NovelList title="구매한 소설 목록" value={currentPurchasedNovelList} /> */}
+          <h3>내가 쓴 소설 목록</h3>
+          <NovelContainer title="내가 쓴 소설 목록" novelListData={data} />
         </div>
-        <table className="novel_table">
+        {/* <table className="novel_table">
           <tbody>
             <tr>
               <td><div className="novel_box"><Link className="novel_title" to="/novel-list/novel/harrypotter">해리포터</Link></div></td>
@@ -66,8 +67,9 @@ const MyPage = () => {
               <td><div className="novel_box"><Link className="novel_title"  to="/novel-list/writer/novel">소설2</Link></div></td>
             </tr>
           </tbody>
-        </table>
-      </div>}
+        </table> */}
+      </div>
+      }
       
     </>
   );

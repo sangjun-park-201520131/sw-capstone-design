@@ -61,7 +61,9 @@ const ToastUIEditor = () => {
       }
     }, {
       credentials: "same-origin",
-    })
+    });
+
+    console.log(responseData);
   };
 
   useEffect(() => {
