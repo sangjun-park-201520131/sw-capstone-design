@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     coverFileName: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     defaultPrice: {
@@ -38,6 +38,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     rating: {
       type: DataTypes.FLOAT,
+      allowNull: true
+    },
+    chapterNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    nickname: {
+      type: DataTypes.STRING(45),
       allowNull: true
     }
   }, {

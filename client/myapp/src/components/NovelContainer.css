@@ -1,0 +1,19 @@
+.container ul {
+    /* display: grid;  */
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0px;
+    padding: 0;
+    width:70%;
+    align-self: center;
+    display: flex;
+}
+
+.container ul {
+    list-style: none;
+}
+
+
+.row{
+    width:600px;
+}
+

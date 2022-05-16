@@ -3,6 +3,7 @@ import GoogleLogin from "react-google-login";
 import GlobalStyle from "../GlobalStyle";
 import { postData } from "./http-request";
 import { BearerTokenContext } from "../App";
+import axios from "axios";
 
 const LoginButton = ({ loginHandler }) => {
   const { currentToken, setBearerToken } = useContext(BearerTokenContext);
@@ -12,12 +13,20 @@ const LoginButton = ({ loginHandler }) => {
 
   const onSuccess = async (res) => {
     loginHandler(true);
-    await postData("auth/google", {
-      googleTokenId: res.tokenId,
-    }).then((response) => {
-      setBearerToken(response.data.token);
-      console.log(currentToken);
+    const response = await axios.post(`http://localhost:8081/auth/google`, {
+      googleTokenId: res.tokenId, 
+    }, {
+      headers: {
+        "content-type": "application/json",
+      }
     });
+    const loginSuccessToken = await response.data.token;
+    
+    setBearerToken(loginSuccessToken);
+    localStorage.removeItem("bearerToken");
+    localStorage.setItem("bearerToken", loginSuccessToken);
+    const bearerToken = localStorage.getItem("bearerToken");
+    setBearerToken(bearerToken);
   };
 
   const onFailure = (res) => {

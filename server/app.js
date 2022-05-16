@@ -2,17 +2,18 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const passport = require('passport');
 const passportConfig = require('./passport');
-const formidable = require('express-formidable');
 
 dotenv.config();
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const uploadRouter = require('./routes/upload');
+const commentRouter = require('./routes/comment');
+const reportRouter = require('./routes/report');
+const likeRouter = require('./routes/like');
 
 const { sequelize } = require('./models');
 
@@ -24,7 +25,7 @@ const dbTest = require('./dbTest'); // DB 테스트용 모듈
 sequelize.sync({ force: false }) // true 시 DROP TABLE IF EXISTS 작동
     .then(() => {
         console.log('데이터베이스 연결 성공');
-        // dbTest();
+        //dbTest();
     }) 
     .catch((err) => {
         console.error(err);
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, './uploads')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/illust', express.static(path.join(__dirname, '/uploads/illusts')));
+app.use('/music', express.static(path.join(__dirname, '/uploads/music')));
 // app.use(formidable()); //postman error
 app.use(passport.initialize());
  
@@ -44,6 +46,9 @@ app.use(passport.initialize());
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/upload', uploadRouter);
+app.use('/comment', commentRouter);
+app.use('/report', reportRouter);
+app.use('/like', likeRouter);
 
 // no router
 app.use((req, res, next) => {
